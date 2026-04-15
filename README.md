@@ -16,11 +16,11 @@ This project implements an Advanced UART (Universal Asynchronous Receiver Transm
 # 🧠 Design Details
 
 🔹 Transmitter (TX)
-Generates UART frame:
-Start bit (0)
-8 data bits (LSB first)
-Stop bit (1)
-Baud rate controlled using clock divider
+✅Generates UART frame:
+✅Start bit (0)
+✅8 data bits (LSB first)
+✅Stop bit (1)
+✅Baud rate controlled using clock divider
 Serializes parallel input data
 🔹 Receiver (RX)
 Detects start bit and aligns sampling
@@ -34,19 +34,19 @@ Enables end-to-end communication verification
 
 # 🧪 Testbench Features
 
-Self-checking testbench (automatic PASS/FAIL)
-Event-driven verification using data_valid
-Multiple test cases:
-0xA5, 0x3C, 0x00, 0xFF
-Waveform generation using VCD dump
-Simulation-based validation of full data path
+🔹Self-checking testbench (automatic PASS/FAIL)
+🔹Event-driven verification using data_valid
+🔹Multiple test cases:
+🔹0xA5, 0x3C, 0x00, 0xFF
+🔹Waveform generation using VCD dump
+🔹Simulation-based validation of full data path
 
 # 📊 Simulation Results
 
-PASS: Sent A5, Received A5
-PASS: Sent 3C, Received 3C
-PASS: Sent 00, Received 00
-PASS: Sent FF, Received FF
+✅PASS: Sent A5, Received A5
+✅PASS: Sent 3C, Received 3C
+✅PASS: Sent 00, Received 00
+✅PASS: Sent FF, Received FF
 
 ✔ Verified correct transmission and reception
 ✔ No data corruption observed
@@ -54,10 +54,10 @@ PASS: Sent FF, Received FF
 
 # 🛠️ Tools & Technologies
 
-Verilog HDL
-EDA Playground
-ModelSim / Icarus Verilog
-GTKWave (Waveform Viewer)
+🔹Verilog HDL
+🔹EDA Playground
+🔹ModelSim / Icarus Verilog
+🔹GTKWave (Waveform Viewer)
 
 # 📂 Project Structure
 
@@ -69,14 +69,14 @@ GTKWave (Waveform Viewer)
 # 🚀 How to Run
 
 ▶ Using Icarus Verilog
-iverilog -g2012 design.sv testbench.sv
-vvp a.out
-gtkwave dump.vcd
+✔ iverilog -g2012 design.sv testbench.sv
+✔ vvp a.out
+✔ gtkwave dump.vcd
 ▶ Using EDA Playground
-Upload design.sv and testbench.sv
-Select Icarus Verilog / ModelSim
-Run simulation
-Open waveform viewer
+✔ Upload design.sv and testbench.sv
+✔ Select Icarus Verilog / ModelSim
+✔ Run simulation
+✔ Open waveform viewer
 
 # 📈 Future Improvements
 
