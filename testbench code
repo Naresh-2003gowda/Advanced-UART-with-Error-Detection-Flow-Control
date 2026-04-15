@@ -21,6 +21,8 @@ module uart_tb;
         .data_valid(data_valid)
     );
 
+    reg [7:0] expected;
+
     initial begin
         $dumpfile("dump.vcd");
         $dumpvars(0, uart_tb);
@@ -31,22 +33,45 @@ module uart_tb;
 
         #20 rst = 0;
 
-        #20;
-        tx_data = 8'hA5;
-        tx_start = 1;
-        #10 tx_start = 0;
+        // Test cases
+        send_data(8'hA5);
+        send_data(8'h3C);
+        send_data(8'h00);
+        send_data(8'hFF);
 
-        #1000;
-
-        tx_data = 8'h3C;
-        tx_start = 1;
-        #10 tx_start = 0;
-
-        #2000;
-
+        #500;
         $finish;
     end
 
-    always @(posedge data_valid) begin
-        $display("Received: %h at time %0t", rx_data, $time);
+    // ✅ FIXED TASK
+   task send_data(input [7:0] data);
+    integer timeout;
+begin
+    @(posedge clk);
+    tx_data = data;
+    expected = data;
+    tx_start = 1;
+
+    @(posedge clk);
+    tx_start = 0;
+
+    timeout = 0;
+
+    // Wait with timeout protection
+    while (data_valid == 0 && timeout < 2000) begin
+        @(posedge clk);
+        timeout = timeout + 1;
     end
+
+    if (timeout >= 2000)
+        $display("TIMEOUT: Sent %h", data);
+    else if (rx_data == expected)
+        $display("PASS: Sent %h, Received %h at %0t", data, rx_data, $time);
+    else
+        $display("FAIL: Sent %h, Got %h", data, rx_data);
+
+    #100;
+end
+endtask
+
+endmodule
