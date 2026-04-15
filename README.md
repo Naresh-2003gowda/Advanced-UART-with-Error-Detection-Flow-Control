@@ -16,21 +16,21 @@ This project implements an Advanced UART (Universal Asynchronous Receiver Transm
 # 🧠 Design Details
 
 🔹 Transmitter (TX)
-✅Generates UART frame:
-✅Start bit (0)
-✅8 data bits (LSB first)
-✅Stop bit (1)
-✅Baud rate controlled using clock divider
-Serializes parallel input data
+- Generates UART frame:
+- Start bit (0)
+- 8 data bits (LSB first)
+- Stop bit (1)
+- Baud rate controlled using clock divider
+- Serializes parallel input data
 🔹 Receiver (RX)
-Detects start bit and aligns sampling
-Uses mid-bit sampling for accurate data capture
-Reconstructs serial data into parallel output
-Validates stop bit to detect framing errors
-Generates data_valid signal upon successful reception
+- Detects start bit and aligns sampling
+- Uses mid-bit sampling for accurate data capture
+- Reconstructs serial data into parallel output
+- Validates stop bit to detect framing errors
+- Generates data_valid signal upon successful reception
 🔹 Top Module
-Connects TX and RX internally (loopback)
-Enables end-to-end communication verification
+- Connects TX and RX internally (loopback)
+- Enables end-to-end communication verification
 
 # 🧪 Testbench Features
 
@@ -43,10 +43,10 @@ Enables end-to-end communication verification
 
 # 📊 Simulation Results
 
-✅PASS: Sent A5, Received A5
-✅PASS: Sent 3C, Received 3C
-✅PASS: Sent 00, Received 00
-✅PASS: Sent FF, Received FF
+- PASS: Sent A5, Received A5
+- PASS: Sent 3C, Received 3C
+- PASS: Sent 00, Received 00
+- PASS: Sent FF, Received FF
 
 ✔ Verified correct transmission and reception
 ✔ No data corruption observed
@@ -69,14 +69,14 @@ Enables end-to-end communication verification
 # 🚀 How to Run
 
 ▶ Using Icarus Verilog
-✔ iverilog -g2012 design.sv testbench.sv
-✔ vvp a.out
-✔ gtkwave dump.vcd
+- iverilog -g2012 design.sv testbench.sv
+- vvp a.out
+- gtkwave dump.vcd
 ▶ Using EDA Playground
-✔ Upload design.sv and testbench.sv
-✔ Select Icarus Verilog / ModelSim
-✔ Run simulation
-✔ Open waveform viewer
+- Upload design.sv and testbench.sv
+- Select Icarus Verilog / ModelSim
+- Run simulation
+- Open waveform viewer
 
 # 📈 Future Improvements
 
